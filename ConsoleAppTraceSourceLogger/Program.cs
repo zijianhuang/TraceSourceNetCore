@@ -30,7 +30,7 @@ namespace ConsoleApp1
 					.AddLogging(cfg =>
 					{
 						cfg.AddConfiguration(configuration.GetSection("Logging"));
-						cfg.AddTraceSource(new System.Diagnostics.SourceSwitch("HouseKeeping") { Level = System.Diagnostics.SourceLevels.All }, consoleListener);
+						cfg.AddTraceSource(new System.Diagnostics.SourceSwitch("Something") { Level = System.Diagnostics.SourceLevels.All }, consoleListener);
 					//	cfg.AddTraceSource(new System.Diagnostics.SourceSwitch("HouseKeeping") { Level = System.Diagnostics.SourceLevels.All }, listener);
 					})
 					.BuildServiceProvider())
