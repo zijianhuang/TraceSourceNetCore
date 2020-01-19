@@ -13,11 +13,11 @@ namespace ConsoleApp0
 			ILogger logger;
 			IFooService fooService;
 
-			using (var serviceProvider = new ServiceCollection()// thanks to https://thecodebuzz.com/logging-in-net-core-console-application/
+			using (var serviceProvider = new ServiceCollection()
 				.AddSingleton<IFooService, FooService>()
 				.AddLogging(cfg =>
 				{
-					cfg.AddConsole().AddConsole(cfg=> cfg.DisableColors=true);
+					cfg.AddConsole(cfg=> cfg.DisableColors=true);
 				})
 				.BuildServiceProvider())
 			{

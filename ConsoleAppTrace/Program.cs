@@ -2,7 +2,6 @@
 using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.IO;
 using ClassLibrary1;
 using Fonlow.Diagnostics;
 
@@ -15,16 +14,14 @@ namespace ConsoleApp1
 			Console.WriteLine("Hello World! from console");
 
 			var configuration = new ConfigurationBuilder()
-								.SetBasePath(Directory.GetCurrentDirectory())
 								.AddJsonFile("appsettings.json", false, true)
-								.AddEnvironmentVariables()
 								.Build();
 
 
 			ILogger logger;
 			IFooService fooService;
 
-			using (var serviceProvider = new ServiceCollection()// thanks to https://thecodebuzz.com/logging-in-net-core-console-application/
+			using (var serviceProvider = new ServiceCollection()
 				.AddSingleton<IFooService, FooService>()
 				.AddLogging(cfg =>
 				{
@@ -33,10 +30,7 @@ namespace ConsoleApp1
 				})
 				.BuildServiceProvider())
 			{
-
 				logger = serviceProvider.GetService<ILogger<Program>>();
-				//logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger<Program>(); // Factory first. This works too.
-
 				fooService = serviceProvider.GetService<IFooService>();
 			}
 
@@ -45,14 +39,14 @@ namespace ConsoleApp1
 
 			fooService.DoWork();
 
-			var listener = new LoggerTraceListener(logger);
-			System.Diagnostics.Trace.Listeners.Add(listener);
+			using (var listener = new LoggerTraceListener(logger))
+			{
+				System.Diagnostics.Trace.Listeners.Add(listener);
+				TraceSources.Instance.InitLoggerTraceListener(listener);
 
-			TraceSources.Instance.InitLoggerTraceListener(listener);// thanks to https://stackoverflow.com/questions/54537694/how-i-can-transfer-all-messages-from-system-diagnostics-trace-to-ilogger and
-
-			TraceLover.DoSomething();
-
-			TraceSourceLover.DoSomething();
+				TraceLover.DoSomething();
+				TraceSourceLover.DoSomething();
+			}
 		}
 
 

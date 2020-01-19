@@ -109,8 +109,6 @@ namespace Fonlow.Diagnostics
                 default:
                     throw new InvalidOperationException("Impossible");
             }
-
-            // base.TraceEvent(eventCache, source, eventType, id, format, args); should not call this
         }
 
         public override void TraceEvent(TraceEventCache eventCache, string source, TraceEventType eventType, int id, string message)
@@ -150,11 +148,6 @@ namespace Fonlow.Diagnostics
                 default:
                     throw new InvalidOperationException("Impossible");
             }
-        }
-
-        public override void TraceData(TraceEventCache eventCache, string source, TraceEventType eventType, int id, object data)
-        {
-            base.TraceData(eventCache, source, eventType, id, data);
         }
 
     }

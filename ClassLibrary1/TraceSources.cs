@@ -69,12 +69,12 @@ namespace Fonlow.Diagnostics
 			return r;
 		}
 
-		public void InitLoggerTraceListener(LoggerTraceListener listener)
+		public void InitLoggerTraceListener(TraceListener listener)
 		{
 			this.listener = listener;
 		}
 
-		LoggerTraceListener listener;
+		TraceListener listener;
 
 		public bool IsTraceSourceEnabled(string name)
 		{

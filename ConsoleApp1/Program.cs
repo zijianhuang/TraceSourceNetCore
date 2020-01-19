@@ -13,9 +13,7 @@ namespace ConsoleApp1
 			Console.WriteLine("Hello World! from console");
 
 			var configuration = new ConfigurationBuilder()
-								.SetBasePath(Directory.GetCurrentDirectory())
 								.AddJsonFile("appsettings.json", false, true)
-								.AddEnvironmentVariables()
 								.Build();
 
 
