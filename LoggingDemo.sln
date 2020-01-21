@@ -13,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppTrace", "ConsoleA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp0", "ConsoleApp0\ConsoleApp0.csproj", "{34CCD163-B991-4553-93E9-C07E30FD257C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppTraceListener", "ConsoleAppTraceListener\ConsoleAppTraceListener.csproj", "{4112CD9D-67AD-466C-9E47-F00D0422C0A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppTraceListener", "ConsoleAppTraceListener\ConsoleAppTraceListener.csproj", "{4112CD9D-67AD-466C-9E47-F00D0422C0A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppTraceSourceLogger", "ConsoleAppTraceSourceLogger\ConsoleAppTraceSourceLogger.csproj", "{B9F59860-2F57-42F0-A353-032ECBB9C748}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppTraceSourceLogger", "ConsoleAppTraceSourceLogger\ConsoleAppTraceSourceLogger.csproj", "{B9F59860-2F57-42F0-A353-032ECBB9C748}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppSeriLog", "ConsoleAppSeriLog\ConsoleAppSeriLog.csproj", "{FB1AF034-BF5F-4398-BB7A-FB63850933E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{B9F59860-2F57-42F0-A353-032ECBB9C748}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9F59860-2F57-42F0-A353-032ECBB9C748}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9F59860-2F57-42F0-A353-032ECBB9C748}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB1AF034-BF5F-4398-BB7A-FB63850933E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB1AF034-BF5F-4398-BB7A-FB63850933E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB1AF034-BF5F-4398-BB7A-FB63850933E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB1AF034-BF5F-4398-BB7A-FB63850933E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
