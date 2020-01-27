@@ -20,7 +20,7 @@ namespace ConsoleApp1
 
 			Serilog.Log.Logger = new Serilog.LoggerConfiguration()
 								  .Enrich.FromLogContext()
-								  .WriteTo.Console()
+								  //.WriteTo.Console() I prefer plugging through the config file
 								  .ReadFrom.Configuration(configuration)
 								  .CreateLogger();
 
@@ -83,9 +83,9 @@ namespace ConsoleApp1
 
 		public void DoWork()
 		{
-			logger.LogInformation("Doing work.");
-			logger.LogWarning("Something warning");
-			logger.LogCritical("Something critical");
+			logger.LogInformation("FooService Doing work.");
+			logger.LogWarning("FooService warning");
+			logger.LogCritical("FooService critical");
 		}
 	}
 }
