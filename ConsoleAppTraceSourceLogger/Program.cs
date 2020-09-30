@@ -22,7 +22,7 @@ namespace ConsoleApp1
 			ILogger logger;
 			IFooService fooService;
 
-			using (var listener = new TextWriterTraceListener("c:\\temp\\mylog.txt"))
+			using (var listener = new TextWriterTraceListener("c:\\temp\\ConsoleAppTraceSourceLogger.txt"))
 			using (var consoleListener = new ConsoleTraceListener())
 			{
 				using (var serviceProvider = new ServiceCollection()
@@ -31,7 +31,7 @@ namespace ConsoleApp1
 					{
 						cfg.AddConfiguration(configuration.GetSection("Logging"));
 						cfg.AddTraceSource(new System.Diagnostics.SourceSwitch("Something") { Level = System.Diagnostics.SourceLevels.All }, consoleListener);
-					//	cfg.AddTraceSource(new System.Diagnostics.SourceSwitch("HouseKeeping") { Level = System.Diagnostics.SourceLevels.All }, listener);
+						cfg.AddTraceSource(new System.Diagnostics.SourceSwitch("HouseKeeping") { Level = System.Diagnostics.SourceLevels.All }, listener);
 					})
 					.BuildServiceProvider())
 				{

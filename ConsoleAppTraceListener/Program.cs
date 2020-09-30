@@ -11,7 +11,7 @@ namespace ConsoleApp1
 		{
 			Console.WriteLine("Hello World! from console");
 
-			using (var listener = new TextWriterTraceListener("c:\\temp\\mylog.txt"))
+			using (var listener = new TextWriterTraceListener("c:\\temp\\ConsoleAppTraceListener.txt"))
 			using (var consoleListener = new ConsoleTraceListener())
 			{
 				Trace.Listeners.Add(listener);

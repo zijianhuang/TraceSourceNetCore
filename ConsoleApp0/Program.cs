@@ -17,7 +17,7 @@ namespace ConsoleApp0
 				.AddSingleton<IFooService, FooService>()
 				.AddLogging(cfg =>
 				{
-					cfg.AddConsole(options=> options.DisableColors=true);
+					cfg.AddConsole(options => options.DisableColors = true);
 				})
 				.BuildServiceProvider())
 			{
