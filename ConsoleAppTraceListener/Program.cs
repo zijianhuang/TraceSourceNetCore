@@ -11,17 +11,15 @@ namespace ConsoleApp1
 		{
 			Console.WriteLine("Hello World! from console");
 
-			using (var listener = new TextWriterTraceListener("c:\\temp\\ConsoleAppTraceListener.txt"))
-			using (var consoleListener = new ConsoleTraceListener())
-			{
-				Trace.Listeners.Add(listener);
-				Trace.Listeners.Add(consoleListener);
-				TraceSources.Instance.InitLoggerTraceListener(listener);
-				TraceSources.Instance.InitLoggerTraceListener(consoleListener);
+			using var listener = new TextWriterTraceListener("c:\\temp\\ConsoleAppTraceListener.txt");
+			using var consoleListener = new ConsoleTraceListener();
+			Trace.Listeners.Add(listener);
+			Trace.Listeners.Add(consoleListener);
+			TraceSources.Instance.InitLoggerTraceListener(listener);
+			TraceSources.Instance.InitLoggerTraceListener(consoleListener);
 
-				TraceLover.DoSomething();
-				TraceSourceLover.DoSomething();
-			}
+			TraceLover.DoSomething();
+			TraceSourceLover.DoSomething();
 		}
 
 

@@ -6,7 +6,7 @@ using ClassLibrary1;
 using Fonlow.Diagnostics;
 using Serilog;
 
-namespace ConsoleApp1
+namespace ConsoleAppLoggerDemo
 {
 	class Program
 	{
@@ -24,25 +24,19 @@ namespace ConsoleApp1
 								  .ReadFrom.Configuration(configuration)
 								  .CreateLogger();
 
-			Microsoft.Extensions.Logging.ILogger logger;
-			IFooService fooService;
-
-			var services = new ServiceCollection();
-			services.AddLogging(configure => configure.AddSerilog());
-
-			using (var serviceProvider = services
+			using var serviceProvider = new ServiceCollection()
+				.AddLogging(builder => builder.AddSerilog())
 				.AddSingleton<IFooService, FooService>()
-				.BuildServiceProvider())
-			{
-				logger = serviceProvider.GetService<ILogger<Program>>();
-				fooService = serviceProvider.GetService<IFooService>();
-			}
+				.BuildServiceProvider();
+
+			var	logger = serviceProvider.GetService<ILogger<Program>>();
+			var	fooService = serviceProvider.GetService<IFooService>();
 
 			try
 			{
 				Log.Information("Starting up");
-				logger.LogInformation("logger information");
-				logger.LogWarning("logger warning");
+				logger.LogInformation("1111logger information");
+				logger.LogWarning("2222logger warning");
 
 				fooService.DoWork();
 
@@ -76,16 +70,16 @@ namespace ConsoleApp1
 	{
 		private readonly Microsoft.Extensions.Logging.ILogger logger;
 
-		public FooService(Microsoft.Extensions.Logging.ILogger<FooService> logger)
+		public FooService(ILogger<FooService> logger)
 		{
 			this.logger = logger;
 		}
 
 		public void DoWork()
 		{
-			logger.LogInformation("FooService Doing work.");
-			logger.LogWarning("FooService warning");
-			logger.LogCritical("FooService critical");
+			logger.LogInformation("3333Doing work.");
+			logger.LogWarning("4444Something warning");
+			logger.LogCritical("5555Something critical");
 		}
 	}
 }

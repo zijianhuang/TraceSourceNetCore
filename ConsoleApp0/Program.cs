@@ -15,9 +15,9 @@ namespace ConsoleApp0
 
 			using (var serviceProvider = new ServiceCollection()
 				.AddSingleton<IFooService, FooService>()
-				.AddLogging(cfg =>
+				.AddLogging(builder =>
 				{
-					cfg.AddConsole(options => options.DisableColors = true);
+					builder.AddConsole(options => options.DisableColors = true);
 				})
 				.BuildServiceProvider())
 			{
@@ -27,8 +27,8 @@ namespace ConsoleApp0
 				fooService = serviceProvider.GetService<IFooService>();
 			}
 
-			logger.LogInformation("logger information");
-			logger.LogWarning("logger warning");
+			logger.LogInformation("1111logger information");
+			logger.LogWarning("2222logger warning");
 
 			fooService.DoWork();
 		}
@@ -50,9 +50,9 @@ namespace ConsoleApp0
 
 		public void DoWork()
 		{
-			logger.LogInformation("Doing work.");
-			logger.LogWarning("Something warning");
-			logger.LogCritical("Something critical");
+			logger.LogInformation("3333Doing work.");
+			logger.LogWarning("4444Something warning");
+			logger.LogCritical("5555Something critical");
 		}
 	}
 }

@@ -2,9 +2,8 @@
 using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.IO;
 
-namespace ConsoleApp1
+namespace ConsoleAppLoggerDemo
 {
 	class Program
 	{
@@ -17,27 +16,24 @@ namespace ConsoleApp1
 								.Build();
 
 
-			ILogger logger;
-			IFooService fooService;
-
-			using (var serviceProvider = new ServiceCollection()// thanks to https://thecodebuzz.com/logging-in-net-core-console-application/
+			using var serviceProvider = new ServiceCollection()
 				.AddSingleton<IFooService, FooService>()
-				.AddLogging(cfg => 
+				.AddLogging(builder =>
 				{
-					cfg.AddConfiguration(configuration.GetSection("Logging"));
-					cfg.AddConsole(); 
+					builder.AddConfiguration(configuration.GetSection("Logging"));
+					builder.AddConsole();
 				})
-				.BuildServiceProvider())
-			{
+				.BuildServiceProvider();
 
-				logger = serviceProvider.GetService<ILogger<Program>>();
-				//logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger<Program>(); // Factory first. This works too.
 
-				fooService = serviceProvider.GetService<IFooService>();
-			}
+			ILogger<Program> logger = serviceProvider.GetService<ILogger<Program>>();
+			//logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger<Program>(); // Factory first. This works too.
 
-			logger.LogInformation("logger information");
-			logger.LogWarning("logger warning");
+			IFooService fooService = serviceProvider.GetService<IFooService>();
+
+
+			logger.LogInformation("1111logger information");
+			logger.LogWarning("2222logger warning");
 
 			fooService.DoWork();
 		}
@@ -61,9 +57,9 @@ namespace ConsoleApp1
 
 		public void DoWork()
 		{
-			logger.LogInformation("Doing work.");
-			logger.LogWarning("Something warning");
-			logger.LogCritical("Something critical");
+			logger.LogInformation("3333Doing work.");
+			logger.LogWarning("4444Something warning");
+			logger.LogCritical("5555Something critical");
 		}
 	}
 }
