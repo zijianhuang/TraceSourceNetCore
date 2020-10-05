@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppTraceSourceLogger
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppSeriLog", "ConsoleAppSeriLog\ConsoleAppSeriLog.csproj", "{FB1AF034-BF5F-4398-BB7A-FB63850933E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleAppTraceSourceLogger2", "ConsoleAppTraceSourceLogger2\ConsoleAppTraceSourceLogger2.csproj", "{4D099865-FF61-4777-8136-30C09F6792AE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppLoggerFactory", "ConsoleAppLoggerFactory\ConsoleAppLoggerFactory.csproj", "{03360B1F-3A71-41E5-B440-1A0AEE7F6EAF}"
 EndProject
 Global
@@ -55,10 +53,6 @@ Global
 		{FB1AF034-BF5F-4398-BB7A-FB63850933E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB1AF034-BF5F-4398-BB7A-FB63850933E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB1AF034-BF5F-4398-BB7A-FB63850933E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D099865-FF61-4777-8136-30C09F6792AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D099865-FF61-4777-8136-30C09F6792AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D099865-FF61-4777-8136-30C09F6792AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D099865-FF61-4777-8136-30C09F6792AE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03360B1F-3A71-41E5-B440-1A0AEE7F6EAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{03360B1F-3A71-41E5-B440-1A0AEE7F6EAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03360B1F-3A71-41E5-B440-1A0AEE7F6EAF}.Release|Any CPU.ActiveCfg = Release|Any CPU

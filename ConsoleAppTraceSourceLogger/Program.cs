@@ -6,7 +6,7 @@ using ClassLibrary1;
 using Fonlow.Diagnostics;
 using System.Diagnostics;
 
-namespace ConsoleApp1
+namespace ConsoleAppLoggerDemo
 {
 	class Program
 	{
@@ -22,35 +22,32 @@ namespace ConsoleApp1
 			ILogger logger;
 			IFooService fooService;
 
-			using (var listener = new TextWriterTraceListener("c:\\temp\\ConsoleAppTraceSourceLogger.txt"))
+			using (var writerTraceListener = new TextWriterTraceListener("c:\\temp\\ConsoleAppTraceSourceLogger.txt"))
 			using (var consoleListener = new ConsoleTraceListener())
 			{
-				using (var serviceProvider = new ServiceCollection()
+				using var serviceProvider = new ServiceCollection()
 					.AddSingleton<IFooService, FooService>()
-					.AddLogging(cfg =>
+					.AddLogging(builder =>
 					{
-						cfg.AddConfiguration(configuration.GetSection("Logging"));
-						cfg.AddTraceSource(new System.Diagnostics.SourceSwitch("Something") { Level = System.Diagnostics.SourceLevels.All }, consoleListener);
-						cfg.AddTraceSource(new System.Diagnostics.SourceSwitch("HouseKeeping") { Level = System.Diagnostics.SourceLevels.All }, listener);
+						builder.AddConfiguration(configuration.GetSection("Logging"));
+						builder.AddTraceSource(new SourceSwitch("HouseKeeping", "All"), consoleListener);
+						builder.AddTraceSource(new SourceSwitch("Something", "All"), writerTraceListener);
 					})
-					.BuildServiceProvider())
-				{
-					logger = serviceProvider.GetService<ILogger<Program>>();
-					fooService = serviceProvider.GetService<IFooService>();
-				}
+					.BuildServiceProvider();
 
-				MyAppTraceSources.HouseKeeping.TraceInformation("OK");
+				logger = serviceProvider.GetService<ILogger<Program>>();
+				fooService = serviceProvider.GetService<IFooService>();
 
-				TraceLover.DoSomething();
-				TraceSourceLover.DoSomething();
-
-				logger.LogInformation("logger information");
-				logger.LogWarning("logger warning");
-
+				logger.LogInformation("1111logger information");
+				logger.LogWarning("2222logger warning");
+				//logger can actually then use consoleListener and writerTraceListener, while ConsoleProvider through AddConsole is not needed.
+				//https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging/?view=aspnetcore-2.1 mentiones TraceSourceProvider has to run on .NET Framework, but this somethis works in .NET Core console
+				//.NET Core 3.1 doc does not mention this.
+				//So far no info could be for how to use appsetting.json for TraceSourceProvider.
 
 				var ts = new TraceSource("HouseKeeping", SourceLevels.All);
 				ts.Listeners.Add(consoleListener);
-				ts.Listeners.Add(listener);
+				ts.Listeners.Add(writerTraceListener);
 				ts.TraceError("aaaaaaaaaaaaaaaaaaaaa");
 
 				fooService.DoWork();
@@ -77,8 +74,8 @@ public class FooService : IFooService
 
 	public void DoWork()
 	{
-		logger.LogInformation("Doing work.");
-		logger.LogWarning("Something warning");
-		logger.LogCritical("Something critical");
+		logger.LogInformation("3333Doing work.");
+		logger.LogWarning("4444Something warning");
+		logger.LogCritical("5555Something critical");
 	}
 }
