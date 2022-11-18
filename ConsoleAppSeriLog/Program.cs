@@ -1,10 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
-using System;
+﻿using ClassLibrary1;
+using Fonlow.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ClassLibrary1;
-using Fonlow.Diagnostics;
+using Microsoft.Extensions.Logging;
 using Serilog;
+using System;
 
 namespace ConsoleAppLoggerDemo
 {

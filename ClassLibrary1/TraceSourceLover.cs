@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
-using Fonlow.Diagnostics;
+﻿using Fonlow.Diagnostics;
 
 namespace ClassLibrary1
 {
